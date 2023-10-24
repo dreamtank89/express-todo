@@ -5,6 +5,10 @@ const getTodos = async () => {
     return prisma.todo.findMany()
 }
 
+const getTodo = async (id) => {
+    return prisma.todo.findUnique({ where: { id } })
+}
+
 const createTodo = async (title) => {
     return prisma.todo.create({ data: { title, completed: false } })
 }
@@ -27,4 +31,5 @@ module.exports = {
     getTodos,
     updateTodo,
     deleteTodo,
+    getTodo,
 }

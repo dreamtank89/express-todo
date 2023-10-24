@@ -5,7 +5,7 @@ const todoController = require('../controllers/TodoController')
 
 router.post('/', todoController.createTodo)
 router.get('/', todoController.getTodos)
-// router.get('/todos/:id', todoController.getTodoById)
+router.get('/id/:id', todoController.getTodoById)
 // router.put('/todos/:id', todoController.updateTodo)
 // router.delete('/todos/:id', todoController.deleteTodo)
 

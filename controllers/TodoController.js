@@ -25,6 +25,19 @@ const getTodos = async (req, res) => {
     }
 }
 
+const getTodoById = async (req, res) => {
+    try {
+        // fill any req here
+        const id = parseInt(req.params.id)
+        // console.log(typeof id)
+        const todo = await TodoModel.getTodo(id)
+        console.log(todo)
+        res.render('todo', { todo })
+    } catch (error) {
+        console.log('Eror = ' + error)
+    }
+}
+
 const updateTodo = async (req, res) => {
     try {
         // fill any req here
@@ -46,4 +59,5 @@ module.exports = {
     getTodos,
     updateTodo,
     deleteTodo,
+    getTodoById,
 }
