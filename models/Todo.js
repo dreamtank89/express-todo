@@ -5,8 +5,8 @@ const getTodos = async () => {
     return prisma.todo.findMany()
 }
 
-const createTodo = async (todoData) => {
-    return prisma.todo.create({ data: todoData })
+const createTodo = async (title) => {
+    return prisma.todo.create({ data: { title, completed: false } })
 }
 
 const updateTodo = async (id, todoData) => {

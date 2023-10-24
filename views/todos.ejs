@@ -7,9 +7,21 @@
     </head>
     <body>
         <h1>Todo List Express</h1>
+        <hr />
+        <ul>
+            <% todos.forEach((todo) => { %>
+            <li><a href="/todos/<%= todo.id %>"><%= todo.title %></a></li>
+            <% }); %>
+        </ul>
+        <br />
+        <hr />
 
         <form action="/todos" method="POST">
-            <input type="text" name="text" placeholder="Insert new todo task" />
+            <input
+                type="text"
+                name="title"
+                placeholder="Insert new todo task"
+            />
             <button type="submit">Add Task</button>
         </form>
     </body>

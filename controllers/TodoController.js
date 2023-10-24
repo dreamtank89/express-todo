@@ -4,10 +4,10 @@ const TodoModel = require('../models/Todo')
 const createTodo = async (req, res) => {
     try {
         // fill any req here
-        const todoData = req.body
-        console.log(todoData)
-        // const newTodoData = await TodoModel.createTodo(todoData)
+        const { title } = req.body
+        const newTodoData = await TodoModel.createTodo(title)
         // res.json(newTodoData)
+        console.log(newTodoData)
         res.redirect('/todos')
     } catch (error) {
         console.log('Eror = ' + error)
@@ -17,7 +17,9 @@ const createTodo = async (req, res) => {
 const getTodos = async (req, res) => {
     try {
         // fill any req here
-        res.render('todos')
+        const todos = await TodoModel.getTodos()
+        // console.log(allTodos)
+        res.render('todos', { todos })
     } catch (error) {
         console.log('Eror = ' + error)
     }
