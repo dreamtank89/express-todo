@@ -3,10 +3,14 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="main.css" />
         <title>Todos</title>
     </head>
     <body>
         <h1>Todo List Express</h1>
+        <h1 class="text-black font-extrabold text-center text-4xl">
+            Hello World
+        </h1>
         <hr />
         <ul>
             <% todos.forEach((todo) => { %>
@@ -16,7 +20,9 @@
                 >
                 <form action="/todos/delete/id/<%= todo.id %>" method="POST">
                     <input type="hidden" name="id" value="<%- todo.id %>" />
-                    <button style="margin: 20px" type="submit">Delete</button>
+                    <button class="btn btn-primary" type="submit">
+                        Delete
+                    </button>
                 </form>
             </li>
 
