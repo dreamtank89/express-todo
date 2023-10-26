@@ -31,7 +31,6 @@ const getTodoById = async (req, res) => {
         const id = parseInt(req.params.id)
         // console.log(typeof id)
         const todo = await TodoModel.getTodo(id)
-        console.log(todo)
         res.render('todo', { todo })
     } catch (error) {
         console.log('Eror = ' + error)
@@ -49,6 +48,10 @@ const updateTodo = async (req, res) => {
 const deleteTodo = async (req, res) => {
     try {
         // fill any req here
+        const id = parseInt(req.params.id)
+        const delItemId = await TodoModel.deleteTodo(id)
+
+        res.redirect('/todos')
     } catch (error) {
         console.log('Eror = ' + error)
     }

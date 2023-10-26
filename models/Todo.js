@@ -21,9 +21,7 @@ const updateTodo = async (id, todoData) => {
 }
 
 const deleteTodo = async (id) => {
-    return prisma.todo.delete({
-        where: { id: id },
-    })
+    return prisma.todo.delete({ where: { id: id } })
 }
 
 module.exports = {
