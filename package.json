@@ -5,8 +5,9 @@
     "main": "app.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "devcss": "postcss public/tailwind.css -o public/main.css -w",
-        "dev": "node --watch app.js"
+        "devcss": "postcss public/tailwind.css -o public/main.css",
+        "dev": "node --watch app.js",
+        "start": "npm run devcss && npm run dev"
     },
     "author": "xilem89",
     "license": "ISC",
