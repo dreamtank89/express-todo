@@ -1,26 +1,109 @@
 <body>
-    <h1>Todo List Express</h1>
-    <h1 class="text-black font-extrabold text-center text-4xl">Hello World</h1>
-    <hr />
-    <ul>
-        <% todos.forEach((todo) => { %>
-        <li style="margin-top: 10px; margin-bottom: 10px">
-            <a style="padding: 20px" href="/todos/id/<%= todo.id %>"
-                ><%= todo.title %></a
+    <nav>
+        <div class="navbar bg-neutral text-neutral-content">
+            <a class="btn btn-ghost normal-case text-xl">Todo List</a>
+        </div>
+    </nav>
+    <section>
+        <div class="hero bg-base-200">
+            <div class="hero-content text-center">
+                <div class="max-w-md">
+                    <h1 class="text-5xl font-bold">Todo List</h1>
+                    <p class="py-6">
+                        Track al of your activity to be more productive
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="my-6 gap-3">
+            <form
+                class="flex flex-row justify-center"
+                action="/todos"
+                method="POST"
             >
-            <form action="/todos/delete/id/<%= todo.id %>" method="POST">
-                <input type="hidden" name="id" value="<%- todo.id %>" />
-                <button class="btn btn-primary" type="submit">Delete</button>
+                <input
+                    type="text"
+                    placeholder="Add task here"
+                    name="title"
+                    class="input input-bordered input-primary w-full max-w-xs"
+                />
+                <button class="mx-2 btn btn-primary" type="submit">
+                    Add Task
+                </button>
             </form>
-        </li>
+        </div>
+    </section>
 
-        <% }); %>
-    </ul>
-    <br />
-    <hr />
-
-    <form action="/todos" method="POST">
-        <input type="text" name="title" placeholder="Insert new todo task" />
-        <button type="submit">Add Task</button>
-    </form>
+    <section>
+        <div class="overflow-x-auto mx-4">
+            <table class="table">
+                <!-- head -->
+                <thead>
+                    <tr>
+                        <th>
+                            <label>
+                                <input type="checkbox" class="checkbox" />
+                            </label>
+                        </th>
+                        <th>Id</th>
+                        <th>Task Name</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% todos.forEach((todo) => { %>
+                    <tr>
+                        <th>
+                            <label>
+                                <input type="checkbox" class="checkbox" />
+                            </label>
+                        </th>
+                        <td>
+                            <div class="flex items-center space-x-3">
+                                <p><%= todo.id %></p>
+                            </div>
+                        </td>
+                        <td>
+                            <%= todo.title %>
+                            <br />
+                        </td>
+                        <td><%= todo.completed %></td>
+                        <th>
+                            <form
+                                action="/todos/delete/id/<%= todo.id %>"
+                                method="POST"
+                            >
+                                <input
+                                    type="hidden"
+                                    name="id"
+                                    value="<%- todo.id %>"
+                                />
+                                <button
+                                    class="btn btn-sm btn-secondary"
+                                    type="submit"
+                                >
+                                    Delete
+                                </button>
+                            </form>
+                        </th>
+                    </tr>
+                    <% }); %>
+                </tbody>
+                <!-- foot -->
+                <tfoot>
+                    <tr>
+                        <th></th>
+                        <th>Id</th>
+                        <th>Task Name</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </section>
 </body>
