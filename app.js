@@ -1,7 +1,7 @@
 const express = require('express')
 const morgan = require('morgan')
 
-// var expressLayouts = require('express-ejs-layouts')
+var expressLayouts = require('express-ejs-layouts')
 
 // const dotenv = require('dotenv').config()
 const port = process.env.PORT || 5000
@@ -13,7 +13,8 @@ app.use(express.static('public'))
 app.use(morgan('tiny'))
 app.use(express.urlencoded({ extended: true }))
 
-// app.use(expressLayouts)
+app.use(expressLayouts)
+// app.set('layout', 'layouts/main')
 
 app.use('/', require('./routes/mainRoutes'))
 app.use('/todos', require('./routes/todoRoutes'))

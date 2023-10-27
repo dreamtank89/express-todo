@@ -15,11 +15,14 @@ const createTodo = async (req, res) => {
 }
 
 const getTodos = async (req, res) => {
+    const locals = {
+        title: 'Todo List',
+    }
     try {
         // fill any req here
         const todos = await TodoModel.getTodos()
-        // console.log(allTodos)
-        res.render('todos', { todos })
+        const title = 'Todo List'
+        res.render('todos', { todos, locals, layout: 'layouts/main' })
     } catch (error) {
         console.log('Eror = ' + error)
     }
