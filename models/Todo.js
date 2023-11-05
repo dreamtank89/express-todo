@@ -6,7 +6,13 @@ const getTodos = async () => {
 }
 
 const getTodo = async (id) => {
-    return prisma.todo.findUnique({ where: { id } })
+    console.log('Prisma ID', id)
+
+    const results = await prisma.todo.findUnique({
+        where: { id: id },
+    })
+    console.log('UF:', results)
+    return results
 }
 
 const createTodo = async (title) => {

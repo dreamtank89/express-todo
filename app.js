@@ -1,24 +1,29 @@
 const express = require('express')
+const expressLayouts = require('express-ejs-layouts')
 const morgan = require('morgan')
-
-var expressLayouts = require('express-ejs-layouts')
-
-// const dotenv = require('dotenv').config()
-const port = process.env.PORT || 5000
+const { PrismaClient } = require('@prisma/client')
 
 const app = express()
-app.set('view engine', 'ejs')
-
-app.use(express.static('public'))
+const prisma = new PrismaClient()
+// Middleware for logging
 app.use(morgan('tiny'))
+
+// Middleware for handling URL-encoded data
 app.use(express.urlencoded({ extended: true }))
 
-app.use(expressLayouts)
-// app.set('layout', 'layouts/main')
+// Set the view engine and use EJS layouts
+app.set('view engine', 'ejs')
+// app.use(expressLayouts)
 
+// Serve static files (e.g., CSS, JavaScript) from the 'public' directory
+app.use(express.static('public'))
+
+// Define your routes
 app.use('/', require('./routes/mainRoutes'))
 app.use('/todos', require('./routes/todoRoutes'))
 
-app.listen(port, () => {
-    console.log(`App is running on port ${port}`)
+// Start the server
+const PORT = process.env.PORT || 3000
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`)
 })

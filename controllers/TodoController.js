@@ -21,28 +21,42 @@ const getTodos = async (req, res) => {
     try {
         // fill any req here
         const todos = await TodoModel.getTodos()
-        const title = 'Todo List'
+
         res.render('todos', { todos, locals, layout: 'layouts/main' })
     } catch (error) {
         console.log('Eror = ' + error)
     }
 }
 
-const getTodoById = async (req, res) => {
+const getTodo = async (req, res) => {
+    const locals = {
+        title: 'Todo List',
+    }
     try {
         // fill any req here
-        const id = parseInt(req.params.id)
-        // console.log(typeof id)
+        const id = parseInt(req.params.id, 10)
+
         const todo = await TodoModel.getTodo(id)
-        res.render('todo', { todo })
+        console.log('Controller ID:', id)
+        res.render('todo', { todo, locals })
+        // res.send(todo)
     } catch (error) {
         console.log('Eror = ' + error)
     }
 }
 
 const updateTodo = async (req, res) => {
+    const id = parseInt(req.params.id)
+    const { title, completed } = req.body
+    const todoData = {
+        title: title,
+        completed: completed,
+    }
     try {
         // fill any req here
+        // const updateData = await TodoModel.updateTodo(id, todoData)
+        // console.log(updateData)
+        // res.redirect(`/todos/id/${id}`)
     } catch (error) {
         console.log('Eror = ' + error)
     }
@@ -65,5 +79,5 @@ module.exports = {
     getTodos,
     updateTodo,
     deleteTodo,
-    getTodoById,
+    getTodo,
 }
